@@ -6,8 +6,12 @@ import { OAuth } from '../components/OAuth'
 
 export const SignIn = () => {
   const [formData, setFormData] = useState({})  //input fields ke liye
-  const loading = useSelector((state) => state.user)
-  const error = useSelector((state) => state.user)
+  const loading = useSelector((state) =>  { 
+    return state.userReducer?.loading;
+  })
+  const error = useSelector((state) =>  { 
+    return state.userReducer?.error;
+  })
   const navigate = useNavigate();
   const dispatch = useDispatch()
 

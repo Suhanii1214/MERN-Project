@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.routes.js"
 import authRouter from "./routes/auth.routes.js";
+import listingRouter from "./routes/listing.routes.js"
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -16,7 +18,9 @@ mongoose.connect("mongodb+srv://suhanii1214:Suhani12345@cluster0.t6pvr22.mongodb
 const app = express();
 const port = 3000;
 
-app.use(express.json())
+app.use(express.json());
+
+app.use(cookieParser());
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
@@ -24,6 +28,7 @@ app.listen(port, () => {
 
 app.use("/api/user", userRouter)
 app.use("/api/auth", authRouter)
+app.use("/api/listing", listingRouter)
  
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode 
